@@ -1,0 +1,47 @@
+
+
+int buzzer=4;
+int smoke=34;
+static int pinValue;
+int smoke_read;
+
+
+
+void setup() {
+  // put your setup code here, to run once:
+  pinMode(buzzer,OUTPUT);
+  pinMode(smoke,INPUT);
+  Serial.begin(9600);
+    
+}
+
+
+void loop() {
+  // put your main code here, to run repeatedly:
+
+  delay(500);
+smoke_read=analogRead(smoke);
+Serial.println(smoke_read);
+while(smoke_read<1200)
+{
+  digitalWrite(buzzer,LOW);
+  
+  smoke_read=analogRead(smoke);
+  Serial.println(smoke_read);
+}
+while(smoke_read>=1200)
+{
+ 
+  digitalWrite(buzzer,HIGH);
+  delay(200);
+  digitalWrite(buzzer,LOW);
+   delay(100);
+  digitalWrite(buzzer,HIGH);
+  
+  Blynk.run(); 
+  
+  smoke_read=analogRead(smoke);
+  Serial.println(smoke_read);
+}
+delay(100);
+}

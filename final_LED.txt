@@ -1,0 +1,57 @@
+
+
+
+BlynkTimer timer;
+ 
+
+int bulb1=4;
+int noise=34;
+int flag=0;
+int noise_read;
+
+
+void setup()
+{
+    pinMode(bulb1,OUTPUT);
+    pinMode(noise,INPUT);
+    Serial.begin(115200);
+  Serial.begin(115200);
+  
+}
+
+void loop()
+{
+
+  delay(500);
+  noise_read=analogRead(noise); 
+
+Serial.println(noise_read);
+
+while(noise_read<250)
+{
+  noise_read=analogRead(noise);
+  Serial.println(noise_read);
+}
+if(noise_read>=250)
+  {
+     
+      if(digitalRead(bulb1)== LOW )
+      {
+        Serial.println("Inside IF");
+          digitalWrite(bulb1,HIGH);
+        
+          delay(100);
+      }
+      else if(digitalRead(bulb1)== HIGH)
+      {
+        Serial.println("Inside ELSE IF");
+          digitalWrite(bulb1,LOW);
+          
+        delay(100);
+      }
+      
+   }
+   Serial.println("After IF");
+   Serial.println(noise_read);
+  delay(100);
+}

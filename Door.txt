@@ -1,0 +1,39 @@
+int entry=5;
+int leave=4;
+static int count=0;
+
+int entry_read;
+int exit_read;
+
+void setup() {
+  // put your setup code here, to run once:
+  pinMode(4,INPUT);
+    pinMode(5,INPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  entry_read=digitalRead(5);
+  exit_read=digitalRead(4);
+  if(entry_read==HIGH)
+  {
+    count++;
+    Serial.println("A Person Entered");
+    Serial.println(count);
+    delay(3500);
+  }
+  else if(exit_read==HIGH)
+  {
+    if(count>0)
+    {
+      count--;
+      Serial.println("A Person Leaved");
+      Serial.println(count);
+      delay(3500);
+    }
+    
+    
+  }
+  
+}
